@@ -7,7 +7,7 @@ A simple library to show a loader around the edges of a materail chip
 <i> Simply put in your layout file </i>
  
             
-            
+            `
  <com.abhinav.chouhan.loaderchip.LoaderChip
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,4 +16,5 @@ A simple library to show a loader around the edges of a materail chip
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />`
+            
