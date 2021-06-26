@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LoaderChip">
+        <attr name="loaderWidth" format="dimension"/>
+        <attr name="loaderColor" format="color"/>
+        <attr name="lapDuration" format="integer"/>
+        <attr name="loadOnClick" format="boolean"/>
+        <attr name="loaderColorStart" format="color"/>
+        <attr name="loaderColorEnd" format="color"/>
+    </declare-styleable>
+</resources>
