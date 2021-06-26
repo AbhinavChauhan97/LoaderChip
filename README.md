@@ -24,6 +24,9 @@ A simple library to show a loader around the edges of a materail chip
 --- | --- |  --- 
 loaderColor | color | give a desired color to loader line 
 loaderWidth | dp | give desired with to loading line 
+lapDuration | integer | give desired duration in millis for a complete rotation of loader line around the chip
+loadOnClick | boolean | indicates whether or not you want to start the laoder on the click of the chip , defaut value is true
+loaderColorStart/loaderColorEnd | color | these attributes falls in one column because there effect is only visible if both of them are present they are used to draw loading line in a gradient color , where loaderColorStart gives the start color and loaderColorEnd gives the end color of the gradient , when these attributes are present loaderColor attributes is ignored if present , if only one of them is present loaderColor is used.
 
   
   
