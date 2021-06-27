@@ -48,11 +48,13 @@ Loader with width = 4dp and lapduration = 4000 milliseconds
 ![](https://github.com/AbhinavChauhan97/LoaderChip/blob/master/ezgif.com-gif-maker%20(2).gif)
 
 
-Loader with OverShoot `loaderStyle` 
+Loader with `overshoot` `loaderStyle` 
 
 ![](https://github.com/AbhinavChauhan97/LoaderChip/blob/master/ezgif.com-gif-maker%20(3).gif)
   
   
-        
+ Loader with `bounce` `loaderStyle`
+ 
+ ![](https://github.com/AbhinavChauhan97/LoaderChip/blob/master/ezgif.com-gif-maker%20(4).gif)
         
             
