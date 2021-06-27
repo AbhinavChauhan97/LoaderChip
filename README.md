@@ -31,11 +31,14 @@ loaderColorStart/loaderColorEnd | color | these attributes falls in one column b
 
 
 <b>Default Loader</b>
+
 ![](https://github.com/AbhinavChauhan97/LoaderChip/blob/master/ezgif.com-gif-maker.gif)
 
 
 
 Gradient Loader (Use both loaderColorStart and loaderColorEnd attributes for gradient loader of those two colors)
+
+
 ![](https://github.com/AbhinavChauhan97/LoaderChip/blob/master/ezgif.com-gif-maker%20(1).gif)
 
 
