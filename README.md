@@ -28,7 +28,8 @@ lapDuration | integer | give desired duration in millis for a complete rotation 
 loadOnClick | boolean | indicates whether or not you want to start the laoder on the click of the chip , defaut value is true
 loaderColorStart/loaderColorEnd | color | these attributes falls in one column because there effect is only visible if both of them are present they are used to draw loading line in a gradient color , where loaderColorStart gives the start color and loaderColorEnd gives the end color of the gradient , when these attributes are present loaderColor attributes is ignored if present , if only one of them is present loaderColor is used.
 
-!(https://github.com/AbhinavChauhan97/LoaderChip/blob/master/ezgif.com-gif-maker%20(1).gif)
+gradient demo (Use both loaderColorStart and loaderColorEnd attributes for gradient loader of those two colors)
+![](https://github.com/AbhinavChauhan97/LoaderChip/blob/master/ezgif.com-gif-maker%20(1).gif)
 
   
   
