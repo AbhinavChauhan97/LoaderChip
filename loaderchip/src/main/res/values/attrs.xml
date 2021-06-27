@@ -7,5 +7,15 @@
         <attr name="loadOnClick" format="boolean"/>
         <attr name="loaderColorStart" format="color"/>
         <attr name="loaderColorEnd" format="color"/>
+        <attr name="reverseEffect" format="boolean"/>
+        <attr name="loaderStyle" format="enum">
+            <enum name="fastOutSlowIn" value="1" />
+            <enum name="overshoot" value="2"/>
+            <enum name="bounce" value="3" />
+            <enum name="accelerate" value="4" />
+            <enum name="decelerate" value="5"/>
+            <enum name="linear" value="6" />
+            <enum name="accelerateThenDecelerate" value="7" />
+        </attr>
     </declare-styleable>
 </resources>
