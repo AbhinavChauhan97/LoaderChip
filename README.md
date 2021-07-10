@@ -4,6 +4,19 @@ A simple library to show a loader around the edges of a materail chip
 
 <b> Usage </b>
 
+<i>put in root build.gradle</i>
+
+
+                       allprojects {
+	                        	repositories {
+		                           	...
+		                       	maven { url 'https://jitpack.io' }
+               		       }
+                	       }
+
+<i> in module build.gradle </i>
+
+               implementation 'com.github.AbhinavChauhan97:LoaderChip:1.0.4'
 <i> Simply put in your layout file </i>
  
                   
@@ -64,7 +77,7 @@ Loader with `overshoot` `loaderStyle`
  
  xml file of above Screen
  
-        `<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
@@ -121,6 +134,6 @@ Loader with `overshoot` `loaderStyle`
              app:layout_constraintRight_toRightOf="parent"
              app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>`
+    </androidx.constraintlayout.widget.ConstraintLayout>
         
             
