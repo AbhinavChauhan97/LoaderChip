@@ -8,6 +8,8 @@
         <attr name="loaderColorStart" format="color"/>
         <attr name="loaderColorEnd" format="color"/>
         <attr name="reverseEffect" format="boolean"/>
+        <attr name="loadingText" format="string"/>
+        <attr name="loadingTextColor" format="color"/>
         <attr name="loaderStyle" format="enum">
             <enum name="fastOutSlowIn" value="1" />
             <enum name="overshoot" value="2"/>

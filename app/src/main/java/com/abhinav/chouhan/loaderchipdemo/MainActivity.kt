@@ -2,6 +2,8 @@ package com.abhinav.chouhan.loaderchipdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import com.abhinav.chouhan.loaderchip.LoaderChip
 import com.abhinav.chouhan.loaderchipdemo.databinding.ActivityMainBinding
 
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun load(){
-       binding.loaderChip.startLoading()
+       Handler(Looper.getMainLooper()).postDelayed({ binding.loaderChip.stopLoading()},3000 )
+        binding.loaderChip.stopLoading()
+       // Handler(Looper.getMainLooper()).postDelayed({ binding.loaderChip.startLoading()},3000 )
     }
 }

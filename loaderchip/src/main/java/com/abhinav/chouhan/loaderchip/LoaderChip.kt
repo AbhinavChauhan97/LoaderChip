@@ -3,6 +3,7 @@ package com.abhinav.chouhan.loaderchip
 
 import android.animation.ValueAnimator
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
@@ -16,7 +17,7 @@ import com.google.android.material.chip.Chip
 import kotlin.math.abs
 
 
-class LoaderChip @JvmOverloads constructor(
+open class LoaderChip @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -29,6 +30,10 @@ class LoaderChip @JvmOverloads constructor(
     var lapDuration = 2000L
     var loaderWidth = 5f
     var loaderColor = Color.RED
+    var loadingTextColor:Int? =  null
+    private var originalText = ""
+    private var originalTextColor:ColorStateList? = null
+    var loadingText:String? = null
     private var loaderStart = 0f
     private var loaderEnd = 0f
     var loaderStartColor = -1
@@ -46,9 +51,10 @@ class LoaderChip @JvmOverloads constructor(
         isAntiAlias = true
         style = Paint.Style.STROKE
     }
-
     init {
-        setEnsureMinTouchTargetSize(false)
+
+        //setEnsureMinTouchTargetSize(false)
+
         super.setOnClickListener {
             wrappedClickListener?.onClick(it)
             if (shouldStartLoadingOnClick) {
@@ -62,6 +68,7 @@ class LoaderChip @JvmOverloads constructor(
                 defStyleAttr,
                 0
             )
+
             reverseEffectEnabled = ta.getBoolean(R.styleable.LoaderChip_reverseEffect,false)
             when (ta.getInt(R.styleable.LoaderChip_loaderStyle, 7)) {
                 1 -> {
@@ -99,6 +106,8 @@ class LoaderChip @JvmOverloads constructor(
             loaderPaint.strokeWidth = loaderWidth
             lapDuration = ta.getInteger(R.styleable.LoaderChip_lapDuration, 2000).toLong()
             shouldStartLoadingOnClick = ta.getBoolean(R.styleable.LoaderChip_loadOnClick, true)
+            loadingText = ta.getString(R.styleable.LoaderChip_loadingText)
+            loadingTextColor = ta.getColor(R.styleable.LoaderChip_loadingTextColor,Color.GRAY)
             if (ta.hasValue(R.styleable.LoaderChip_loaderColorStart) && ta.hasValue(R.styleable.LoaderChip_loaderColorEnd)) {
                 loaderStartColor = ta.getColor(R.styleable.LoaderChip_loaderColorStart, Color.WHITE)
                 loaderEndColor = ta.getColor(R.styleable.LoaderChip_loaderColorEnd, Color.WHITE)
@@ -110,8 +119,10 @@ class LoaderChip @JvmOverloads constructor(
         }
     }
 
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
         with(canvas) {
             if (shouldLoad) {
                 loaderPath.reset()
@@ -127,41 +138,51 @@ class LoaderChip @JvmOverloads constructor(
 
 
     fun stopLoading() {
-        shouldLoad = false
-        loaderAnimator.end()
+        if(shouldLoad) {
+            shouldLoad = false
+            text = originalText
+            setTextColor(originalTextColor)
+            loaderAnimator.end()
+        }
     }
 
 
     fun startLoading() {
-        shouldLoad = true
+        if(!shouldLoad) {
+            shouldLoad = true
+            handleText()
+            setupPaths()
+            handleGradient()
+            setupAnimator()
+        }
+    }
+
+    private fun handleText(){
+        if(loadingText != null) {
+            originalText = text.toString()
+            text = loadingText
+            originalTextColor = textColors
+            loadingTextColor?.let { setTextColor(it) }
+        }
+    }
+
+    private fun setupPaths(){
         borderPath = Path().apply {
+            val halfStrokeWidth = loaderPaint.strokeWidth / 2f
             addRoundRect(
-                0f + loaderPaint.strokeWidth / 2,
-                0f + loaderPaint.strokeWidth / 2,
-                width.toFloat() - loaderPaint.strokeWidth / 2,
-                height.toFloat() - loaderPaint.strokeWidth / 2,
-                if (chipCornerRadius == 0f) height / 2f else chipCornerRadius,
-                if (chipCornerRadius == 0f) height / 2f else chipCornerRadius,
+                chipDrawable.bounds.left.toFloat() + halfStrokeWidth,
+                chipDrawable.bounds.top.toFloat() + halfStrokeWidth ,
+                chipDrawable.bounds.right.toFloat() - halfStrokeWidth,
+                chipDrawable.bounds.bottom.toFloat() - halfStrokeWidth,
+                chipCornerRadius,
+                chipCornerRadius,
                 Path.Direction.CCW
             )
         }
-
-
         pathMeasure = PathMeasure(borderPath, true)
+    }
 
-        if (drawingGradient) {
-            loaderPaint.shader = LinearGradient(
-                0f,
-                0f,
-                pathMeasure.length / 3f,
-                loaderWidth,
-                loaderStartColor,
-                loaderEndColor,
-                Shader.TileMode.CLAMP
-            )
-        } else {
-            loaderPaint.color = loaderColor
-        }
+    private fun setupAnimator(){
         loaderAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
             duration = lapDuration
             this.interpolator = this@LoaderChip.interpolator
@@ -183,5 +204,22 @@ class LoaderChip @JvmOverloads constructor(
             loaderAnimator.start()
         }
         loaderAnimator.start()
+    }
+
+
+    private fun handleGradient() {
+        if (drawingGradient) {
+            loaderPaint.shader = LinearGradient(
+                0f,
+                0f,
+                pathMeasure.length / 3f,
+                loaderWidth,
+                loaderStartColor,
+                loaderEndColor,
+                Shader.TileMode.CLAMP
+            )
+        } else {
+            loaderPaint.color = loaderColor
+        }
     }
 }

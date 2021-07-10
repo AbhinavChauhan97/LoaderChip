@@ -12,15 +12,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
+
     <com.abhinav.chouhan.loaderchip.LoaderChip
-        android:id="@+id/loaderChip3"
+        android:id="@+id/loaderChip"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:text="Clicked Me !"
         app:lapDuration="2000"
         app:loaderWidth="5dp"
+        app:loadingTextColor="@android:color/holo_red_light"
+        app:loadingText="Loading..."
         app:loaderStyle="bounce"
-        app:chipCornerRadius="5dp"
+        app:chipCornerRadius="0dp"
         app:reverseEffect="true"
         app:layout_constraintVertical_bias="0.7"
         android:onClick="@{v -> activity.load()}"
@@ -29,41 +34,41 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.abhinav.chouhan.loaderchip.LoaderChip
-        android:id="@+id/loaderChip2"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:text="Clicked Me !"
-        app:lapDuration="3000"
-        app:loaderWidth="8dp"
-        app:loaderStyle="overshoot"
-        app:reverseEffect="true"
-        app:loaderColor="@android:color/holo_blue_bright"
-        app:loaderColorStart="@android:color/holo_blue_bright"
-        app:loaderColorEnd="@android:color/holo_red_light"
-        android:onClick="@{v -> activity.load()}"
-        app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <com.abhinav.chouhan.loaderchip.LoaderChip-->
+<!--        android:id="@+id/loaderChip2"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:text="Clicked Me !"-->
+<!--        app:lapDuration="3000"-->
+<!--        app:loaderWidth="8dp"-->
+<!--        app:loaderStyle="overshoot"-->
+<!--        app:reverseEffect="true"-->
+<!--        app:loaderColor="@android:color/holo_blue_bright"-->
+<!--        app:loaderColorStart="@android:color/holo_blue_bright"-->
+<!--        app:loaderColorEnd="@android:color/holo_red_light"-->
+<!--        android:onClick="@{v -> activity.load()}"-->
+<!--        app:layout_constraintVertical_bias="0.1"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <com.abhinav.chouhan.loaderchip.LoaderChip
-        android:id="@+id/loaderChip"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:text="Clicked Me !"
-        app:lapDuration="2000"
-        app:loaderWidth="3dp"
-        app:reverseEffect="true"
-        app:chipCornerRadius="15dp"
-        app:layout_constraintVertical_bias="0.4"
-        app:loaderColor="@android:color/holo_blue_bright"
-        android:onClick="@{v -> activity.load()}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <com.abhinav.chouhan.loaderchip.LoaderChip-->
+<!--        android:id="@+id/loaderChip"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:text="Clicked Me !"-->
+<!--        app:lapDuration="2000"-->
+<!--        app:loaderWidth="3dp"-->
+<!--        app:reverseEffect="true"-->
+<!--        app:chipCornerRadius="15dp"-->
+<!--        app:layout_constraintVertical_bias="0.4"-->
+<!--        app:loaderColor="@android:color/holo_blue_bright"-->
+<!--        android:onClick="@{v -> activity.load()}"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
