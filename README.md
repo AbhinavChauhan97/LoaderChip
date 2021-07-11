@@ -41,7 +41,7 @@ loadOnClick | boolean | indicates whether or not you want to start the laoder on
 loaderColorStart/loaderColorEnd | color | these attributes falls in one column because there effect is only visible if both of them are present they are used to draw loading line in a gradient color , where loaderColorStart gives the start color and loaderColorEnd gives the end color of the gradient , when these attributes are present loaderColor attributes is ignored if present , if only one of them is present loaderColor is used.
 reverseEffect | boolean | indicates whether or not loader should go back and forth 
 loadingText | String | optional text to  show while loading
-loadingTextColor | String | text color to show while loading
+loadingTextColor | color | text color to show while loading
 loaderStyle | enum | use to provide a loading style possible values `bounce` , `accelerate` , `decelerate` , `accelerateThenDecelerate`(default) , `linear` , `overshoot` , `fastOutSlowIn`
 
 
