@@ -14,6 +14,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.activity = this
+        
+
+
+
+//        println(MyChip.obj)
+//        println(MyChip.obj)
+//        println(MyChip.obj)
+//        println(MyChip.obj)
+//        println(MyChip.obj)
+//        println(MyChip.obj)
+
+
 
     }
 

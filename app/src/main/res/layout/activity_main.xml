@@ -21,9 +21,8 @@
         android:layout_height="60dp"
         android:text="Clicked Me !"
         app:lapDuration="2000"
+
         app:loaderWidth="5dp"
-        app:loadingTextColor="@android:color/holo_red_light"
-        app:loadingText="Loading..."
         app:loaderStyle="bounce"
         app:chipCornerRadius="0dp"
         app:reverseEffect="true"

@@ -5,6 +5,8 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.*
+import android.graphics.text.MeasuredText
+import android.text.StaticLayout
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.*
@@ -24,6 +26,7 @@ open class LoaderChip @JvmOverloads constructor(
 ) : Chip(context, attributeSet, defStyleAttr) {
 
 
+    private var rect = Rect()
     private lateinit var borderPath: Path
     private lateinit var pathMeasure: PathMeasure
     private lateinit var loaderAnimator: ValueAnimator
@@ -120,10 +123,27 @@ open class LoaderChip @JvmOverloads constructor(
     }
 
 
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+//        println(textAlignment)
+//        if(textAlignment == TEXT_ALIGNMENT_CENTER){
+//            textAlignment = TEXT_ALIGNMENT_GRAVITY // remove center alignment which is causing us problem
+//            originalText = text.toString()
+//            loaderPaint.getTextBounds(text.toString(),0,text.length,rect)
+//        }
+    }
+
+    override fun setText(text: CharSequence?, type: BufferType?) {
+        super.setText(text, type)
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         with(canvas) {
+            //println(originalText)
+
+           // canvas.drawText(originalText,width/2f,height/2f + rect.height(),paint)
             if (shouldLoad) {
                 loaderPath.reset()
                 pathMeasure.getSegment(loaderStart, loaderEnd, loaderPath, true)
@@ -140,8 +160,10 @@ open class LoaderChip @JvmOverloads constructor(
     fun stopLoading() {
         if(shouldLoad) {
             shouldLoad = false
-            text = originalText
-            setTextColor(originalTextColor)
+            if(loadingText != null) {
+                text = originalText
+                setTextColor(originalTextColor)
+            }
             loaderAnimator.end()
         }
     }
@@ -150,7 +172,9 @@ open class LoaderChip @JvmOverloads constructor(
     fun startLoading() {
         if(!shouldLoad) {
             shouldLoad = true
-            handleText()
+            if(loadingText != null) {
+                handleText()
+            }
             setupPaths()
             handleGradient()
             setupAnimator()
