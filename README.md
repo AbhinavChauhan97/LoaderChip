@@ -139,3 +139,6 @@ Loader with `overshoot` `loaderStyle`
     </androidx.constraintlayout.widget.ConstraintLayout>
         
             
+
+__Contributions__ 
+thanks to cheticamp from stackoverflow for fixing [this](https://stackoverflow.com/questions/68327346/cannot-draw-on-chip-when-text-alignment-is-center/68371546?noredirect=1#comment120853331_68371546) major bug.
