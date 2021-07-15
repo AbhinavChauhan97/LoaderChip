@@ -138,7 +138,9 @@ Loader with `overshoot` `loaderStyle`
 
     </androidx.constraintlayout.widget.ConstraintLayout>
         
-            
+  __Version 1.0.5__   ( 10-july-2021) 
+
+give optional text whilte loading , attributes `loadingText` , `loadingTextColor` are added           
 
 __Contributions__ 
 thanks to cheticamp from stackoverflow for fixing [this](https://stackoverflow.com/questions/68327346/cannot-draw-on-chip-when-text-alignment-is-center/68371546?noredirect=1#comment120853331_68371546) major bug.
