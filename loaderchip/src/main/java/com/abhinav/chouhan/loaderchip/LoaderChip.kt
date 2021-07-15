@@ -13,6 +13,7 @@ import android.view.animation.*
 import android.view.animation.Interpolator
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
+import androidx.core.graphics.withTranslation
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.google.android.material.chip.Chip
@@ -24,12 +25,10 @@ open class LoaderChip @JvmOverloads constructor(
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : Chip(context, attributeSet, defStyleAttr) {
-
-
-    private var rect = Rect()
     private lateinit var borderPath: Path
     private lateinit var pathMeasure: PathMeasure
     private lateinit var loaderAnimator: ValueAnimator
+    private var badScroll = 0f
     var lapDuration = 2000L
     var loaderWidth = 5f
     var loaderColor = Color.RED
@@ -53,11 +52,9 @@ open class LoaderChip @JvmOverloads constructor(
     private val loaderPaint = Paint().apply {
         isAntiAlias = true
         style = Paint.Style.STROKE
+        textAlign = Paint.Align.CENTER
     }
     init {
-
-        //setEnsureMinTouchTargetSize(false)
-
         super.setOnClickListener {
             wrappedClickListener?.onClick(it)
             if (shouldStartLoadingOnClick) {
@@ -122,17 +119,6 @@ open class LoaderChip @JvmOverloads constructor(
         }
     }
 
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-//        println(textAlignment)
-//        if(textAlignment == TEXT_ALIGNMENT_CENTER){
-//            textAlignment = TEXT_ALIGNMENT_GRAVITY // remove center alignment which is causing us problem
-//            originalText = text.toString()
-//            loaderPaint.getTextBounds(text.toString(),0,text.length,rect)
-//        }
-    }
-
     override fun setText(text: CharSequence?, type: BufferType?) {
         super.setText(text, type)
     }
@@ -141,13 +127,12 @@ open class LoaderChip @JvmOverloads constructor(
         super.onDraw(canvas)
 
         with(canvas) {
-            //println(originalText)
-
-           // canvas.drawText(originalText,width/2f,height/2f + rect.height(),paint)
             if (shouldLoad) {
-                loaderPath.reset()
-                pathMeasure.getSegment(loaderStart, loaderEnd, loaderPath, true)
-                drawPath(loaderPath, loaderPaint)
+                withTranslation(x = badScroll) {
+                    loaderPath.reset()
+                    pathMeasure.getSegment(loaderStart, loaderEnd, loaderPath, true)
+                    drawPath(loaderPath, loaderPaint)
+                }
             }
         }
     }
@@ -156,6 +141,10 @@ open class LoaderChip @JvmOverloads constructor(
         wrappedClickListener = l
     }
 
+    override fun scrollTo(x: Int, y: Int) {
+        super.scrollTo(x, y)
+        badScroll = scrollX.toFloat()
+    }
 
     fun stopLoading() {
         if(shouldLoad) {
@@ -229,7 +218,6 @@ open class LoaderChip @JvmOverloads constructor(
         }
         loaderAnimator.start()
     }
-
 
     private fun handleGradient() {
         if (drawingGradient) {
